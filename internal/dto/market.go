@@ -11,13 +11,13 @@ type ViewMarketsByRolesRequest struct {
 }
 
 type MarketDTO struct {
-	ID        string     `json:"id"`
-	Name      string     `json:"name"`
-	Enabled   bool       `json:"enabled"`
-	Roles     []string   `json:"roles"`
-	CreatedAt *time.Time `json:"created_at"`
-	UpdatedAt *time.Time `json:"updated_at"`
-	DeletedAt *time.Time `json:"deleted_at"`
+	ID           string     `json:"id"`
+	Name         string     `json:"name"`
+	Enabled      bool       `json:"enabled"`
+	AllowedRoles []string   `json:"allowed_roles"`
+	CreatedAt    *time.Time `json:"created_at"`
+	UpdatedAt    *time.Time `json:"updated_at"`
+	DeletedAt    *time.Time `json:"deleted_at"`
 }
 
 type ViewMarketsByRolesResponse struct {

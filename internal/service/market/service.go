@@ -3,18 +3,26 @@ package market
 import (
 	"context"
 	"errors"
-	"spot_instrument_service/internal/app/dto"
-	"spot_instrument_service/internal/app/mapper"
-	"spot_instrument_service/internal/app/repository"
+	"spot_instrument_service/internal/domain/markets"
+	"spot_instrument_service/internal/dto"
+	"spot_instrument_service/internal/mapper"
+
+	"github.com/gofrs/uuid"
 )
 
 var ErrNoMarkets = errors.New("markets not found")
 
-type Service struct {
-	marketRepo repository.Market
+type marketRepo interface {
+	ViewMarketsByRoles(ctx context.Context, userRoles []markets.Role) ([]*markets.Market, error)
+	Delete(id uuid.UUID) error
+	Save(m *markets.Market) (*markets.Market, error)
 }
 
-func New(marketRepo repository.Market) *Service {
+type Service struct {
+	marketRepo marketRepo
+}
+
+func New(marketRepo marketRepo) *Service {
 	return &Service{
 		marketRepo: marketRepo,
 	}

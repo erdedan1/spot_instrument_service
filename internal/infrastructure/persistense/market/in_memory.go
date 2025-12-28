@@ -2,8 +2,7 @@ package markets
 
 import (
 	"context"
-	"spot_instrument_service/internal/app/domain/markets"
-	"spot_instrument_service/internal/app/repository"
+	"spot_instrument_service/internal/domain/markets"
 	"sync"
 
 	"github.com/gofrs/uuid"
@@ -14,7 +13,7 @@ type InMemory struct {
 	mu      *sync.RWMutex
 }
 
-func NewInMemory() repository.Market {
+func NewInMemory() *InMemory {
 	return &InMemory{
 		markets: make(map[uuid.UUID]*markets.Market),
 		mu:      &sync.RWMutex{},
